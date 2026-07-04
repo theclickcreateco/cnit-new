@@ -6,13 +6,34 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 export default function StrategyScheduler() {
   const [formState, setFormState] = useState("idle");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setFormState("submitting");
-    // Simulate API call
-    setTimeout(() => {
-      setFormState("success");
-    }, 1500);
+    
+    try {
+      const response = await fetch("/api/strategy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          url: e.target.url.value,
+          firstName: e.target.firstName.value,
+          lastName: e.target.lastName.value,
+          email: e.target.email.value,
+          budget: e.target.budget.value,
+          bottleneck: e.target.bottleneck.value,
+        }),
+      });
+      
+      if (response.ok) {
+        setFormState("success");
+      } else {
+        console.error("Failed to submit form");
+        setFormState("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+      setFormState("error");
+    }
   };
 
   if (formState === "success") {
@@ -132,9 +153,10 @@ export default function StrategyScheduler() {
                 <select 
                   id="budget" 
                   required
+                  defaultValue=""
                   className="w-full h-12 px-4 border border-slate-200 rounded-sm text-body-md appearance-none bg-white focus:outline-none focus:border-electric-cyan focus:ring-1 focus:ring-electric-cyan transition-colors"
                 >
-                  <option value="" disabled selected>Select an option</option>
+                  <option value="" disabled>Select an option</option>
                   <option value="3k-5k">$3k - $5k</option>
                   <option value="5k-10k">$5k - $10k</option>
                   <option value="10k+">$10k+</option>
@@ -161,8 +183,8 @@ export default function StrategyScheduler() {
               disabled={formState === "submitting"}
               className="w-full flex h-14 items-center justify-center rounded bg-midnight-navy px-8 text-label-caps text-white transition-all hover:bg-midnight-navy/90 focus:outline-none focus:ring-2 focus:ring-electric-cyan focus:ring-offset-2 disabled:opacity-70 group"
             >
-              {formState === "submitting" ? "Processing Application..." : "Submit Strategic Application"}
-              {formState !== "submitting" && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
+              {formState === "submitting" ? "Processing Application..." : formState === "error" ? "Submission Failed. Try Again" : "Submit Strategic Application"}
+              {formState !== "submitting" && formState !== "error" && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
             </button>
             <p className="text-center text-xs text-slate-500 mt-4">
               Your data is secure. By submitting, you agree to our Privacy Policy.

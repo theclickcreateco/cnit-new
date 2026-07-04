@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-100 via-surface to-surface opacity-80" />
       
       <div className="container mx-auto px-4 sm:px-gutter max-w-container-max relative z-10">
-        <div className="max-w-4xl">
+        <div className="max-w-4xl flex flex-col items-center text-center mx-auto">
           <div className="inline-flex items-center rounded-sm border border-electric-cyan/30 bg-electric-cyan/10 px-3 py-1 mb-6">
             <span className="text-label-caps text-electric-cyan">The AI Search Evolution is Here</span>
           </div>
@@ -21,7 +21,7 @@ export default function Hero() {
             Solutions beyond technologies mean focusing entirely on your bottom line. By optimizing your business for both Google and modern AI engines, CN IT Solutions builds data-backed search frameworks (SEO, AEO, and GEO) that consistently turn organic traffic into predictable inbound pipeline and measurable growth.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
             <Link
               href="/strategy"
               className="inline-flex h-12 items-center justify-center rounded bg-midnight-navy px-8 text-label-caps text-white transition-all hover:bg-midnight-navy/90 focus:outline-none focus:ring-2 focus:ring-electric-cyan focus:ring-offset-2 hover:shadow-ambient group"

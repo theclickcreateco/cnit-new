@@ -7,9 +7,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
           
           <div className="md:col-span-5 flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-headline-sm text-midnight-navy">CN IT</span>
-              <span className="text-label-caps text-slate-400 mt-1">Solutions</span>
+            <Link href="/" className="flex items-center gap-1.5">
+              <span className="text-headline-sm text-midnight-navy">CN IT Solutions</span>
             </Link>
             <p className="text-body-md text-slate-500 max-w-md mt-4">
               CN IT Solutions is a performance-driven marketing agency specializing in SEO, Answer Engine Optimization (AEO), and Generative Engine Optimization (GEO). We deliver solutions beyond technologies to turn search visibility into predictable corporate pipeline.
